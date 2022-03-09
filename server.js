@@ -2,17 +2,20 @@
 //-- variables --\\
 
 const express = require("express")
-const server = express() // aka 'app'
 const router = require("./router")
+
+const server = express() // aka 'app'
+const PORT = 3333
 
 
 
 //-- startup --\\
 
-server.listen(3000)
+server.listen(PORT, function()
+{
+    console.log("Notes API running on port " + PORT)
+})
 
+server.use(express.static("static"))
+server.set("view engine", "ejs")
 server.use("/", router)
-
-
-
-//-- functions --\\
