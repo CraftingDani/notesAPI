@@ -23,19 +23,28 @@ db.connect(function(err)
 })
 
 
+
 //-- functions --\\
 
-function addNote(note)
+function checkBirthday(persons)
 {
+    const birthdayNames = []
 
+    persons.forEach(function(i)
+    {
+        if(isToday(i.date)) birthdayNames.push(i.personName)
+    })
+
+    if(birthdayNames != []) return birthdayNames.join(", ")
 }
 
 
-function getBirthday()
+function isToday(date)
 {
-    
+    const today = new Date()
+    return date.getYear() == today.getYear() && date.getMonth() == today.getMonth() && date.getDay() == today.getDay()
 }
 
 
 
-module.exports = { addNote, getBirthday }
+module.exports = { db, checkBirthday }
